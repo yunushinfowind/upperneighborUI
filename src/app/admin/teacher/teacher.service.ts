@@ -52,6 +52,13 @@ export class TeacherService {
     }));
   }
 
+  updateStatus(teacherForm: any) {
+    const result = this.httpclient.post(this.baseUrl + '/admin/update-status', teacherForm);
+    return result.pipe(map((response: any) => {
+      return response;
+    }));
+  }
+  
   deleteTeacher(id: any) {
     const result = this.httpclient.delete(this.baseUrl + '/admin/delete-teacher/' + id);
     return result.pipe(map((response: any) => {

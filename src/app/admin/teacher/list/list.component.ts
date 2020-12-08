@@ -46,6 +46,32 @@ export class ListComponent implements OnInit {
     )
   }
 
+  changeStatus(id: any , status:any) {
+    if (confirm("Are you sure to change status ?")) {
+      let postData = {
+        user_id:id,
+      }
+      this.teacherService.updateStatus(postData).subscribe(
+        result => {
+          if (result.success == true) {
+            this.toastr.success(result.message);
+            if(result.data.status=='active'){
+              $('.status_'+id).prop('checked',true);
+            }else{
+              $('.status_'+id).prop('checked',false);
+            }
+          }
+        }
+      )
+    }else{
+      if(status){
+        $('.status_'+id).prop('checked',true);
+      }else{
+        $('.status_'+id).prop('checked',false);
+      }
+    }
+  }
+
   deleteTeacher(id: any) {
     if (confirm("Are you sure to delete ?")) {
       this.teacherService.deleteTeacher(id).subscribe(

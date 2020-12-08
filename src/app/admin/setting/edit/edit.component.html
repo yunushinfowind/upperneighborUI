@@ -1,0 +1,49 @@
+
+        <div class="content-wrapper">
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Update Settings Form</h1>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-10">
+
+                            <div class="card card-info">
+                                <div class="card-header">
+                                    <h3 class="card-title">Update Settings</h3>
+                                </div>
+                                <div class="card-body">
+                                    <form [formGroup]="productForm">
+                                      
+                                        <table class="table table-bordered" formArrayName="quantities">
+                                          <tr *ngFor="let quantity of quantities(); let i=index" [formGroupName]="i">
+                                            <td>
+                                                Key :
+                                                <input type="text" [disabled]="true" formControlName="key_value" value="{{quantity.key_value}}" class="text-row form-control">
+                                            </td>
+                                            <td>
+                                                value :
+                                                <input type="text" formControlName="value" value="{{quantity.value}}" class="text-row form-control">
+                                               
+                                            </td>
+                                          </tr>
+                                        </table>
+                                       
+                                        <button id="submit_button" type="button" (click)="onSubmit(productForm)" class="btn btn-success">Submit<span id="loader_submit" style="display: none;"> <i
+                                            class="fas fa-sync fa-spin"></i></span></button>
+                                        
+                                      </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+       
