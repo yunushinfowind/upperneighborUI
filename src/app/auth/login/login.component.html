@@ -1,0 +1,63 @@
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="javascript:void(0)"><b>Admin</b></a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="card">
+            <div class="card-body login-card-body">
+                <p class="login-box-msg">Sign in to start your session</p>
+
+                <form #loginForm="ngForm" (ngSubmit)="loginSubmit(loginForm)">
+                    <div class="input-group mb-3">
+                        <input type="email" required name="email" [(ngModel)]="user.email" [pattern]="emailPattern"
+                            #email="ngModel" class="form-control" placeholder="Email">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="alert-danger" *ngIf="email.touched && !email.valid">
+                        <div *ngIf="email.errors.required">Email is required.</div>
+                        <div *ngIf="email.errors.pattern">Email must be a valid email address</div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input required type="password" name="password" name="password" [(ngModel)]="user.password"
+                            #password="ngModel" class="form-control" placeholder="Password">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="alert-danger" *ngIf="password.touched && !password.valid">
+                        <div *ngIf="password.errors.required">Password is required.</div>
+                    </div>
+                    <div class="row">
+                        <!-- <div class="col-8">
+                            <div class="icheck-primary">
+                                <input type="checkbox" id="remember">
+                                <label for="remember">
+                                    Remember Me
+                                </label>
+                            </div>
+                        </div> -->
+                        <!-- /.col -->
+                        <div class="col-5">
+                            <button type="submit" [class.disabled]="!loginForm.valid"
+                                class="btn btn-primary btn-block">Sign In
+                                <span *ngIf="showLoader"> <i class="fas fa-sync fa-spin"></i></span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <p class="mb-1">
+                    <a routerLink="/forgot-password">I forgot my password</a>
+
+                </p>
+            </div>
+        </div>
+    </div>
+
+</body>

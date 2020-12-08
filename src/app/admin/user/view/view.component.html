@@ -1,0 +1,38 @@
+
+        <div class="content-wrapper">
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>User View</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a routerLink="/admin/user/list">User List</a></li>
+                                <li class="breadcrumb-item active">User view</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <div class="card card-info">
+                                <div class="card-header">
+                                    <h3 class="card-title">Detail</h3>
+                                </div>
+                                <div class="card-body">
+                                    <strong>FullName:</strong><p>{{teacherDetail.fullname}}</p>
+                                    <strong>Email:</strong><p>{{teacherDetail.email}}</p>
+                                    <strong>Profile:</strong><p> <img [src]="teacherDetail.profile"  style="height: 100px; width:100px"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+       

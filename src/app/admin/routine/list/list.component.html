@@ -1,0 +1,99 @@
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Routine List</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a [routerLink]="['/admin/artist/list']">Artist List</a></li>
+                        <li class="breadcrumb-item"><a class="btn btn-primary btn-block"
+                                [routerLink]="['/admin/routine/add',user_id]">Add Routine</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Routine List</h3>
+                            <div class="card-tools">
+                                <button  (click)="resetSearch()" id="search_refresh" type="button"  class="btn btn-primary">
+                                    <i class="fas fa-redo-alt"></i>
+                                  </button>
+                                <div class="input-group input-group-sm" style="width: 160px;">
+                                    <input type="text" name="table_search" class="table_search form-control float-right"
+                                        placeholder="Search By Name">
+                                    <div class="input-group-append">
+                                        <button (click)="routneList(1)" type="button" class="btn btn-default">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table datatable
+                                class="table table-bordered table-hover table table-striped table-bordered table-sm row-border hover">
+                                <thead>
+                                    <tr>
+                                        <th>S.N.</th>
+                                        <th>Artist Name</th>
+                                        <th>Routine Name</th>
+                                        <th>Routine Description</th>
+                                        <th>Routine Level</th>
+                                        <th>Artist Name</th>
+                                        <th>Image</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr *ngIf="showLoader">
+                                        <td colspan="7">
+                                            <i class="fas 3x fa-spinner fa-spin"></i>
+                                        </td>
+                                    </tr>
+                                    <tr id="row_{{routine.id}}" *ngFor="let routine of List; let i = index">
+                                        <td>{{(i+1)+(10*(currentPage-1))}}</td>
+                                        <td>{{routine.user.fullname}}</td>
+                                        <td>{{routine.routine_name}}</td>
+                                        <td class="description">{{routine.routine_description}}</td>
+                                        <td>{{routine.routine_level}}</td>
+                                        <td>{{routine.user.fullname}}</td>
+                                        <td><img src="{{routine.image}}" width="100px" height="50px"></td>
+                                        <td>
+                                            <a [routerLink]="['/admin/routine/view',routine.id]"><i class="fas fa-eye"
+                                                    style="font-size: 20px;"></i></a>
+                                            <a (click)="deleteRoutine(routine.id)"><i class="fas fa-trash"
+                                                    style="font-size: 20px;"></i></a>
+                                            <a [routerLink]="['/admin/routine/edit',routine.id,routine.user_id]"><i
+                                                    class="fas fa-pencil-alt" style="font-size: 20px;"></i></a>
+                                            <a class="btn btn-primary" [routerLink]="['/admin/routine-video/list/', routine.id , routine.user_id]">Videos<span class="badge bg-warning">{{routine.video_count}}</span></a>
+                                        </td>
+
+                                    </tr>
+                                    <tr *ngIf="List?.length == 0" class="alert-danger">
+                                        <td colspan="8">
+                                            <span>
+                                                No data found
+                                            </span>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

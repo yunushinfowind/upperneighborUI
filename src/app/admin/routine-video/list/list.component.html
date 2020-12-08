@@ -1,0 +1,132 @@
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Routine Video List</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a [routerLink]="['/admin/artist/list']">Artist List</a></li>
+                        <li class="breadcrumb-item"><a [routerLink]="['/admin/routine/list', user_id]">Routine List</a>
+                        </li>
+                        <li class="breadcrumb-item"><a class="btn btn-primary btn-block"
+                                [routerLink]="['/admin/routine-video/add', routine_id , user_id]">Add Routine Video</a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Routine Video List</h3>
+                            <div class="card-tools">
+                                <button  (click)="resetSearch()" id="search_refresh" type="button"  class="btn btn-primary">
+                                    <i class="fas fa-redo-alt"></i>
+                                  </button>
+                                <div class="input-group input-group-sm" style="width: 160px;">
+                                    <input type="text" name="table_search" class="table_search form-control float-right"
+                                        placeholder="Search By Title">
+                                    <div class="input-group-append">
+                                        <button (click)="routneVideoList(1)" type="button" class="btn btn-default">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table datatable
+                                class="table table-bordered table-hover table table-striped table-bordered table-sm row-border hover">
+                                <thead>
+                                    <tr>
+                                        <th>S. N.</th>
+                                        <th>Routine</th>
+                                        <th>Artist</th>
+                                        <th>Video Title</th>
+                                        <th>Duration</th>
+                                        <th>Description</th>
+                                        <th>Thumb</th>
+                                        <th>Add to SoundSlice</th>
+                                        <th>Add Notation File to SoundSlice</th>
+                                        <th>Action</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr *ngIf="showLoader">
+                                        <td colspan="8">
+                                            <i class="fas 3x fa-spinner fa-spin"></i>
+                                        </td>
+                                    </tr>
+
+                                    <tr id="row_{{routine.id}}" *ngFor="let routine of List; let i = index">
+                                        <td>{{(i+1)+(10*(currentPage-1))}}</td>
+                                        <td>{{routine.routine.routine_name}}</td>
+                                        <td>{{routine.user.fullname}}</td>
+                                        <td>{{routine.video_title}}</td>
+                                        <td>{{routine.video_duration}}</td>
+                                        <td class="description">{{routine.video_description}}</td>
+                                        <td><img src="{{routine.video_thumb}}" width="100px" height="50px"></td>
+                                        <td>
+                                            <button id="slice_{{routine.id}}" *ngIf="routine.slice_added == 'no'" class="btn btn-primary" 
+                                                (click)="createVideoSliceRecordong(routine.id , routine.routine.routineFolder.folder_info.id)">Add Slice<span id="loader_{{routine.id}}" style="display: none;"> <i
+                                                    class="fas fa-sync fa-spin"></i></span></button>
+                                            <button id="slice_dis_{{routine.id}}" [disabled]="true"  *ngIf="routine.slice_added == 'yes'" class="btn btn-primary">
+                                                                 Added<span
+                                                class="badge bg-warning"></span></button>
+                                        </td>
+                                        <td>
+                                            <form #notation="ngForm" (ngSubmit)="addNotation(notation)">
+                                                <div class="input-group date">
+                                                    <input id="notation_file" type="file" class="form-control"
+                                                        (change)="onFileChange($event,routine.id)" />
+                                                </div>
+                                                <div class="alert-danger" *ngIf="notation.submitted && !notationFile">
+                                                    <div>Notation File is required.</div>
+                                                </div>
+                                                <button id="notation_{{routine.id}}" *ngIf="routine.notation_file_added == 'no'" class="btn btn-primary" [class.disabled]="!notation.valid"
+                                                    (click)="addSliceNotation()">Add Notation<span id="loader_notation_{{routine.id}}" style="display: none;"> <i
+                                                        class="fas fa-sync fa-spin"></i></span><span
+                                                        class="badge bg-warning"></span>
+                                                </button>
+                                               <button id="notation_dis_{{routine.id}}" [disabled]="true"  *ngIf="routine.notation_file_added == 'yes'" class="btn btn-primary">
+                                                            Added</button>
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <a [routerLink]="['/admin/routine-video/view',routine.id]"><i
+                                                    class="fas fa-eye" style="font-size: 20px;"></i></a>
+                                            <a (click)="deleteRoutineVideo(routine.id)"><i class="fas fa-trash"
+                                                    style="font-size: 20px;"></i></a>
+                                            <a [routerLink]="['/admin/routine-video/edit',routine.id,routine.user_id]"><i
+                                                    class="fas fa-pencil-alt" style="font-size: 20px;"></i></a>
+
+                                        </td>
+
+                                    </tr>
+                                    <tr *ngIf="List?.length == 0" class="alert-danger">
+                                        <td colspan="10">
+                                            <span>
+                                                No data found
+                                            </span>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

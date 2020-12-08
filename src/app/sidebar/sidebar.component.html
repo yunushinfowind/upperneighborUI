@@ -1,0 +1,135 @@
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Brand Logo -->
+  <a class="brand-link">
+    <img src="http://framework.infowindtech.biz/upperneigh/uploads/Logo.png" alt="upperneigher"
+      class="brand-image img-circle elevation-3" style="opacity: .8">
+    <span class="brand-text font-weight-light">Upper Neighbour</span>
+  </a>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Sidebar user panel (optional) -->
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="image">
+        <img src="{{profile}}" class="img-circle elevation-2" alt="User Image">
+      </div>
+      <div class="info">
+        <a class="d-block">admin</a>
+      </div>
+    </div>
+
+    <!-- SidebarSearch Form -->
+    <!-- <div class="form-inline">
+        <div class="input-group" data-widget="sidebar-search">
+          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-sidebar">
+              <i class="fas fa-search fa-fw"></i>
+            </button>
+          </div>
+        </div>
+      </div> -->
+
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <li class="nav-item menu-open">
+          <a routerLinkActive='active' routerLink="admin/dashboard" class="nav-link">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+              Dashboard
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a [routerLinkActiveOptions]="{exact: false}" routerLinkActive='active' routerLink="admin/user/list"
+            class="nav-link">
+            <i class="nav-icon fas fas fa-user"></i>
+            <p>
+              User
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a [routerLinkActiveOptions]="{exact: false}" routerLinkActive='active' routerLink="admin/blog/list"
+            class="nav-link">
+            <i class="nav-icon fas fas fa-book"></i>
+            <p>
+              Blog
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          
+          <a [routerLinkActiveOptions]="{exact: false}" [class.active]="router.isActive('/admin/artist-video/edit') || router.isActive('/admin/artist-video/view') 
+          || router.isActive('/admin/artist-video/list') || router.isActive('/admin/artist/list') || router.isActive('/admin/routine-video/edit') 
+          || router.isActive('/admin/routine-video/view') || router.isActive('/admin/routine/list') || router.isActive('/admin/routine/view') || router.isActive('/admin/routine/edit') || router.isActive('/admin/routine-video/list')"  routerLink="admin/artist/list"
+            class="nav-link">
+            <i class="nav-icon fas fas fa-user"></i>
+            <p>
+              Artist
+            </p>
+          </a>
+        </li>
+        <!-- <li class="nav-item">
+          <a [routerLinkActiveOptions]="{exact: false}" routerLinkActive='active' routerLink="admin/routine/list"
+            class="nav-link">
+            <i class="nav-icon fas fas fa-user"></i>
+            <p>
+              Routine
+            </p>
+          </a>
+        </li> -->
+        <li class="nav-item menu-open">
+          <a routerLinkActive='active' routerLink="admin/change-password" class="nav-link">
+            <i class="nav-icon fas fa-edit"></i>
+            <p>
+              Change Password
+            </p>
+          </a>
+        </li>
+
+        <!-- <li class="nav-item" (click)="clickEvent()"  
+    [ngClass]="status ? 'menu-is-opening menu-open' : ''">
+            <a class="nav-link">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
+                Forms
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview" [ngClass]="status ? {'display':'block'} : {'display':'none'}"
+             >
+              <li class="nav-item">
+                <a href="pages/forms/general.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>General Elements</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/forms/advanced.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Advanced Elements</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/forms/editors.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Editors</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/forms/validation.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Validation</p>
+                </a>
+              </li>
+            </ul>
+          </li> -->
+
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>

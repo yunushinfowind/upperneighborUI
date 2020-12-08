@@ -1,0 +1,6 @@
+::ng-deep .ck-editor__editable {
+    min-height: 200px !important;
+}
+.col-3 {
+    float: right;
+}

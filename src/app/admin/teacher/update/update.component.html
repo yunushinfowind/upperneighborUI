@@ -1,0 +1,101 @@
+
+        <div class="content-wrapper">
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Update Artist Form</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a routerLink="/admin/artist/list">Artist</a></li>
+                                <li class="breadcrumb-item active">Update</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-10">
+
+                            <div class="card card-info">
+                                <div class="card-header">
+                                    <h3 class="card-title">Update Artist</h3>
+                                </div>
+                                <div class="card-body">
+                                    <form #teacherForm="ngForm" (ngSubmit)="teacherSubmit(teacherForm)">
+                                        <div class="form-group">
+                                            <label>Fullname:</label>
+                                            <input type="text" required name="fullname" [(ngModel)]="model.fullname" #fullname="ngModel" class="form-control" placeholder="fullname">
+                                            <div class="alert-danger" *ngIf="(fullname.touched && !fullname.valid)||(teacherForm.submitted && !fullname.valid)">
+                                                <div *ngIf="fullname.errors.required">Title is required.</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Profession:</label>
+                                            <input type="text" required name="profession" [(ngModel)]="model.profession" #profession="ngModel" class="form-control" placeholder="profession">
+                                            <div class="alert-danger" *ngIf="(profession.touched && !profession.valid)||(teacherForm.submitted && !profession.valid)">
+                                                <div *ngIf="profession.errors.required">Profession is required.</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Address:</label>
+                                            <input type="text" required name="address" [(ngModel)]="model.address" #address="ngModel" class="form-control" placeholder="address">
+                                            <div class="alert-danger" *ngIf="(address.touched && !address.valid)||(teacherForm.submitted && !address.valid)">
+                                                <div *ngIf="address.errors.required">Address is required.</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>About:</label>
+                                            <textarea  required name="history" [(ngModel)]="model.history" #history="ngModel" class="form-control">.</textarea>
+                                            <div class="alert-danger" *ngIf="(history.touched && !history.valid)||(teacherForm.submitted && !history.valid)">
+                                                <div *ngIf="history.errors.required">About is required.</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Career Highlight:</label>
+                                            <textarea  required name="career_highlight" [(ngModel)]="model.career_highlight" #career_highlight="ngModel" class="form-control">.</textarea>
+                                            <div class="alert-danger" *ngIf="(career_highlight.touched && !career_highlight.valid)||(teacherForm.submitted && !career_highlight.valid)">
+                                                <div *ngIf="career_highlight.errors.required">Career highlight is required.</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Key Point:</label>
+                                            <input type="text" required name="key_point" [(ngModel)]="model.key_point" #key_point="ngModel" class="form-control" placeholder="key point">
+                                            <div class="alert-danger" *ngIf="(key_point.touched && !key_point.valid)||(teacherForm.submitted && !key_point.valid)">
+                                                <div *ngIf="key_point.errors.required">key point is required.</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Performance:</label>
+                                            <input type="text" required name="performance" [(ngModel)]="model.performance" #performance="ngModel" class="form-control" placeholder="performance">
+                                            <div class="alert-danger" *ngIf="(performance.touched && !performance.valid) ||(teacherForm.submitted && !performance.valid)">
+                                                <div *ngIf="performance.errors.required">Performance is required.</div>
+                                            </div>
+                                        </div>
+                                        <div class="bootstrap-timepicker">
+                                            <img [src]="imageSrc" *ngIf="imageSrc" style="height: 100px; width:100px">
+                                            <div class="form-group">
+                                                <label>Profile:</label>
+                                                <div class="input-group date">
+                                                    <input  accept="image/*"  type="file" class="form-control" (change)="onFileChange($event)"
+                                                       />
+                                                </div>
+                                            </div>
+                                            <div class="col-3">
+                                            <button type="submit" [class.disabled]="!teacherForm.valid" class="btn btn-primary btn-block">Save
+                                                <span *ngIf="showLoader"> <i class="fas fa-sync fa-spin"></i></span>
+                                            </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+       

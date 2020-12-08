@@ -1,0 +1,86 @@
+
+        <div class="content-wrapper">
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Edit Routine Form</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a [routerLink]="['/admin/routine/list',user_id]">Routine</a></li>
+                                <li class="breadcrumb-item active">edit</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-10">
+
+                            <div class="card card-info">
+                                <div class="card-header">
+                                    <h3 class="card-title">Edit Routine</h3>
+                                </div>
+                                <div class="card-body">
+                                    <form #routineForm="ngForm" (ngSubmit)="routineSubmit(routineForm)">
+                                        <div class="form-group">
+                                            <label>Routine Name:</label>
+                                            <input type="text" required name="routine_name" [(ngModel)]="model.routine_name" #routine_name="ngModel" class="form-control" placeholder="routine name">
+                                            <div class="alert-danger" *ngIf="(routine_name.touched && !routine_name.valid)||(routineForm.submitted && !routine_name.valid)">
+                                                <div *ngIf="routine_name.errors.required">Routine name is required.</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Routine Description:</label>
+                                            <input type="text" required name="routine_description" [(ngModel)]="model.routine_description" #routine_description="ngModel" class="form-control" placeholder="routine description">
+                                            <div class="alert-danger" *ngIf="(routine_description.touched && !routine_description.valid)||(routineForm.submitted && !routine_description.valid)">
+                                                <div *ngIf="routine_description.errors.required">Routine description is required.</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Routine level:</label>
+                                            <input type="text" required name="routine_level" [(ngModel)]="model.routine_level" #routine_level="ngModel" class="form-control" placeholder="routine level">
+                                            <div class="alert-danger" *ngIf="(routine_level.touched && !routine_level.valid)||(routineForm.submitted && !routine_level.valid)">
+                                                <div *ngIf="routine_level.errors.required">Routine level is required.</div>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="form-group">
+                                            <label>Artist:</label>
+                                            
+                                            <select required name="user_id" class="form-control"  style="width: 100%;" data-select2-id="1" (change)="onGetUserId($event.target.value)"  aria-hidden="true">
+                                                <option value="">Select Artist</option>
+                                                <option [selected]="model.user_id == artist.id" *ngFor="let artist of artistList" value="{{artist.id}}">{{artist.fullname}}</option>
+                                            </select> -->
+                                            <!-- <div class="alert-danger" *ngIf="(user_id.touched && !user_id.valid)">
+                                                <div *ngIf="user_id.errors.required">Artist is required.</div>
+                                            </div> -->
+  
+                                        <!-- </div> -->
+                                        <div class="bootstrap-timepicker">
+                                            <img [src]="imageSrc" *ngIf="imageSrc" style="height: 100px; width:100px">
+                                            <div class="form-group">
+                                                <label>Profile:</label>
+                                                <div class="input-group date">
+                                                    <input  accept="image/*"  type="file" class="form-control" (change)="onFileChange($event)"
+                                                       />
+                                                </div>
+                                            </div>
+                                            <div class="col-4">
+                                            <button type="submit" [class.disabled]="!routineForm.valid" class="btn btn-primary btn-block">Save
+                                                <span *ngIf="showLoader"> <i class="fas fa-sync fa-spin"></i></span>
+
+                                            </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+       

@@ -1,0 +1,80 @@
+
+        <div class="content-wrapper">
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Add Routine Video Form</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a [routerLink]="['/admin/routine-video/list',routine_id , user_id]">Routine Video list</a></li>
+                                <li class="breadcrumb-item active">add</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <div class="card card-info">
+                                <div class="card-header">
+                                    <h3 class="card-title">Add Routine Video</h3>
+                                </div>
+                                <div class="card-body">
+                                    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+                                        <p>
+                                          <label for="name">Routine Name:</label>
+                                          <input type="text" readonly id="name" value="{{model.routine_name}}"  class="form-control">
+                                        </p>
+                                      
+                                        <table class="table table-bordered" formArrayName="quantities">
+                                          <tr>
+                                            <th colspan="3">Add Multiple Video:</th>
+                                            <th width="150px"><button type="button" (click)="addQuantity()" class="btn btn-primary">Add Field</button></th>
+                                          </tr>
+                                          <tr *ngFor="let quantity of quantities().controls; let i=index" [formGroupName]="i">
+                                            <td>
+                                                Video Title :
+                                                <input type="text" formControlName="video_title" class="text-row form-control">
+                                                <div *ngIf="submitted && quantity.controls.video_title.errors">
+                                                    <div class="alert-danger" *ngIf="quantity.controls.video_title.errors.required">Video title is required</div>
+                                                </div>
+                                               
+                                            </td>
+                                            <td>
+                                                Video Description :
+                                                <textarea formControlName="video_description"  class="text-row form-control"></textarea>
+                                                <div *ngIf="submitted && quantity.controls.video_description.errors">
+                                                    <div class="alert-danger" *ngIf="quantity.controls.video_description.errors.required">Description is required</div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                Video:
+                                                <input type="file" accept="video/*" formControlName="video" (change)="onFileChange($event,i)"  class="form-control">
+                                                <div *ngIf="submitted && quantity.controls.video.errors">
+                                                    <div class="alert-danger" *ngIf="quantity.controls.video.errors.required">Video is required</div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <button (click)="removeQuantity(i)" class="btn btn-danger">Remove</button>
+                                                
+                                            </td>
+                                          </tr>
+                                        </table>
+                                       
+                                        <button id="submit_button" type="submit" class="btn btn-success">Submit<span id="loader_submit" style="display: none;"> <i
+                                            class="fas fa-sync fa-spin"></i></span></button>
+                                        
+                                      </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+       

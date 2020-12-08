@@ -1,0 +1,66 @@
+
+        <div class="content-wrapper">
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Update Artist Form</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a routerLink="/admin/user/list">User List</a></li>
+                                <li class="breadcrumb-item active">Update</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-10">
+
+                            <div class="card card-info">
+                                <div class="card-header">
+                                    <h3 class="card-title">Update Artist</h3>
+                                </div>
+                                <div class="card-body">
+                                    <form #teacherForm="ngForm" (ngSubmit)="teacherSubmit(teacherForm)">
+                                        <div class="form-group">
+                                            <label>Full Name:</label>
+                                            <input type="text" required name="fullname" [(ngModel)]="model.fullname" #fullname="ngModel" class="form-control" placeholder="fullname">
+                                            <div class="alert-danger" *ngIf="(fullname.touched && !fullname.valid)||(teacherForm.submitted && !fullname.valid)">
+                                                <div *ngIf="fullname.errors.required">Title is required.</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Email:</label>
+                                            <input type="text" required name="email" [(ngModel)]="model.email" #email="ngModel" class="form-control" placeholder="email">
+                                            <div class="alert-danger" *ngIf="(email.touched && !email.valid)||(teacherForm.submitted && !email.valid)">
+                                                <div *ngIf="email.errors.required">Email is required.</div>
+                                            </div>
+                                        </div>
+                                        <div class="bootstrap-timepicker">
+                                            <img [src]="imageSrc" *ngIf="imageSrc" style="height: 100px; width:100px">
+                                            <div class="form-group">
+                                                <label>Profile:</label>
+                                                <div class="input-group date">
+                                                    <input  accept="image/*"  type="file" class="form-control" (change)="onFileChange($event)"
+                                                       />
+                                                </div>
+                                            </div>
+                                            <div class="col-3">
+                                            <button type="submit" [class.disabled]="!teacherForm.valid" class="btn btn-primary btn-block">Save
+                                                <span *ngIf="showLoader"> <i class="fas fa-sync fa-spin"></i></span>
+                                            </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+       

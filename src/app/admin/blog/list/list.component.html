@@ -1,0 +1,82 @@
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Blog List</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a class="btn btn-primary btn-block" routerLink="/admin/blog/add">Add Blog</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Blog List</h3>
+                            <div class="card-tools">
+                                <button  (click)="resetSearch()" id="search_refresh" type="button"  class="btn btn-primary">
+                                    <i class="fas fa-redo-alt"></i>
+                                  </button>
+                                <div class="input-group input-group-sm" style="width: 150px;">
+                                  <input type="text" name="table_search" class="table_search form-control float-right" placeholder="Search By Title">
+                                  <div class="input-group-append">
+                                    <button type="submit" (click)="blogList(1)" class="btn btn-default">
+                                      <i class="fas fa-search"></i>
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table datatable class="table table-bordered table-hover table table-striped table-bordered table-sm row-border hover">
+                                <thead>
+                                    <tr>
+                                        <th>S.N.</th>
+                                        <th>Title</th>
+                                        <th>Description</th>
+                                        <th>Image</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngIf="showLoader">
+                                        <td colspan="4">
+                                            <i class="fas 3x fa-spinner fa-spin"></i>
+                                        </td>
+                                    </tr>
+                                    <tr id="row_{{blog.id}}" *ngFor="let blog of List; let i = index">
+                                        <td>{{(i+1)+(10*(currentPage-1))}}</td>
+                                        <td>{{blog.title}}</td>
+                                        <td class="description">{{blog.description}}</td>
+                                        <td><img src="{{blog.image}}" width="100px" height="50px"></td>
+                                        <td>
+                                            <a [routerLink]="['/admin/blog/view',blog.id]"><i class="fas fa-eye" style="font-size: 20px;"></i></a>
+                                            <a (click)="deleteBlog(blog.id)"><i class="fas fa-trash" style="font-size: 20px;"></i></a>
+                                            <a [routerLink]="['/admin/blog/edit',blog.id]"><i class="fas fa-pencil-alt" style="font-size: 20px;"></i></a>
+                                        </td>
+                                    </tr>
+                                    <tr *ngIf="List?.length == 0" class="alert-danger">
+                                        <td colspan="5">
+                                        <span >
+                                           No data found 
+                                        </span>
+                                        </td>    
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
