@@ -39,56 +39,55 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <table datatable
-                                class="table table-bordered table-hover table table-striped table-bordered table-sm row-border hover">
-                                <thead>
-                                    <tr>
-                                        <th>S.N.</th>
-                                        <th>Artist Name</th>
-                                        <th>Routine Name</th>
-                                        <th>Routine Description</th>
-                                        <th>Routine Level</th>
-                                        <th>Artist Name</th>
-                                        <th>Image</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+                            <div class="table-responsive">
+                                <table datatable
+                                    class="table table-bordered table-hover table table-striped table-bordered table-sm row-border hover">
+                                    <thead>
+                                        <tr>
+                                            <th>S.N.</th>
+                                            <th>Artist Name</th>
+                                            <th>Routine Name</th>
+                                            <th>Routine Description</th>
+                                            <th>Routine Level</th>
+                                            <th>Artist Name</th>
+                                            <th>Image</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
 
-                                    <tr *ngIf="showLoader">
-                                        <td colspan="7">
-                                            <i class="fas 3x fa-spinner fa-spin"></i>
-                                        </td>
-                                    </tr>
-                                    <tr id="row_{{routine.id}}" *ngFor="let routine of List; let i = index">
-                                        <td>{{(i+1)+(10*(currentPage-1))}}</td>
-                                        <td>{{routine.user.fullname}}</td>
-                                        <td>{{routine.routine_name}}</td>
-                                        <td class="description">{{routine.routine_description}}</td>
-                                        <td>{{routine.routine_level}}</td>
-                                        <td>{{routine.user.fullname}}</td>
-                                        <td><img src="{{routine.image}}" width="100px" height="50px"></td>
-                                        <td>
-                                            <a [routerLink]="['/admin/routine/view',routine.id]"><i class="fas fa-eye"
-                                                    style="font-size: 20px;"></i></a>
-                                            <a (click)="deleteRoutine(routine.id)"><i class="fas fa-trash"
-                                                    style="font-size: 20px;"></i></a>
-                                            <a [routerLink]="['/admin/routine/edit',routine.id,routine.user_id]"><i
-                                                    class="fas fa-pencil-alt" style="font-size: 20px;"></i></a>
-                                            <a class="btn btn-primary" [routerLink]="['/admin/routine-video/list/', routine.id , routine.user_id]">Videos<span class="badge bg-warning">{{routine.video_count}}</span></a>
-                                        </td>
+                                        <tr *ngIf="showLoader">
+                                            <td colspan="7">
+                                                <i class="fas 3x fa-spinner fa-spin"></i>
+                                            </td>
+                                        </tr>
+                                        <tr id="row_{{routine.id}}" *ngFor="let routine of List; let i = index">
+                                            <td>{{(i+1)+(10*(currentPage-1))}}</td>
+                                            <td>{{routine.user.fullname}}</td>
+                                            <td>{{routine.routine_name}}</td>
+                                            <td class="description">{{routine.routine_description}}</td>
+                                            <td>{{routine.routine_level}}</td>
+                                            <td>{{routine.user.fullname}}</td>
+                                            <td><img src="{{routine.image}}" width="100px" height="50px"></td>
+                                            <td>
+                                                <a class="btn btn-sm btn-outline-primary" [routerLink]="['/admin/routine/view',routine.id]"><i class="fas fa-eye"></i></a>
+                                                <a class="btn btn-sm btn-outline-danger" (click)="deleteRoutine(routine.id)"><i class="fas fa-trash"></i></a>
+                                                <a class="btn btn-sm btn-outline-info" [routerLink]="['/admin/routine/edit',routine.id,routine.user_id]"><i class="fas fa-pencil-alt"></i></a>
+                                                <a class="btn btn-sm btn-primary" [routerLink]="['/admin/routine-video/list/', routine.id , routine.user_id]">Videos<span class="badge bg-warning">{{routine.video_count}}</span></a>
+                                            </td>
 
-                                    </tr>
-                                    <tr *ngIf="List?.length == 0" class="alert-danger">
-                                        <td colspan="8">
-                                            <span>
-                                                No data found
-                                            </span>
-                                        </td>
-                                    </tr>
+                                        </tr>
+                                        <tr *ngIf="List?.length == 0" class="alert-danger">
+                                            <td colspan="8">
+                                                <span>
+                                                    No data found
+                                                </span>
+                                            </td>
+                                        </tr>
 
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         <!-- /.card-body -->
                     </div>

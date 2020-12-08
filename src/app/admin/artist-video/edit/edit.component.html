@@ -49,11 +49,10 @@
                                                        />
                                                 </div>
                                             </div>
-                                            <div class="col-4">
-                                            <button type="submit" [class.disabled]="!routineForm.valid" class="btn btn-primary btn-block">Save
-                                                <span *ngIf="showLoader"> <i class="fas fa-sync fa-spin"></i></span>
-
-                                            </button>
+                                            <div class="form-group">
+                                                <button type="submit" [class.disabled]="!routineForm.valid" class="btn btn-primary">Save
+                                                    <span *ngIf="showLoader"> <i class="fas fa-sync fa-spin"></i></span>
+                                                </button>
                                             </div>
                                         </div>
                                     </form>
