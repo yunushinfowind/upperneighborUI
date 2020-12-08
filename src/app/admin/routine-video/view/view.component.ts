@@ -10,6 +10,7 @@ import { RoutineVideoService } from '../routine-video.service';
   styleUrls: ['./view.component.css']
 })
 
+
 export class ViewComponent implements OnInit {
 
   Id: any;
