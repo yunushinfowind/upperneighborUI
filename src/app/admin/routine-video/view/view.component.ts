@@ -9,6 +9,8 @@ import { RoutineVideoService } from '../routine-video.service';
   templateUrl: './view.component.html',
   styleUrls: ['./view.component.css']
 })
+
+
 export class ViewComponent implements OnInit {
 
   Id: any;
@@ -18,6 +20,7 @@ export class ViewComponent implements OnInit {
     routine_name : ''
   }
   video_link : any
+  video_link_url : any;
 
   constructor(private dom:DomSanitizer , private routineService: RoutineVideoService, private activatedRoute: ActivatedRoute) { 
     this.activatedRoute.params.subscribe(params => {
@@ -41,7 +44,8 @@ export class ViewComponent implements OnInit {
         this.model.video_thumb = result.data.video_thumb;
         this.video_link = result.data.video_link;
         this.model.routine_name = result.data.routine.routine_name
-        this.video_link = this.dom.bypassSecurityTrustResourceUrl(this.video_link);
+        this.video_link_url = this.dom.bypassSecurityTrustResourceUrl(this.video_link);
+        // this.url=this.dom.bypassSecurityTrustResourceUrl(this.sliceUrl);
         console.log("detail:")
         console.log(this.video_link)
         // console.log(this.routineVideoDetail.user)
