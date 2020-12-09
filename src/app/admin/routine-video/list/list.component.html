@@ -68,46 +68,6 @@
                                             </td>
                                         </tr>
 
-<<<<<<< HEAD
-                                        <tr id="row_{{routine.id}}" *ngFor="let routine of List; let i = index">
-                                            <td>{{(i+1)+(10*(currentPage-1))}}</td>
-                                            <td>{{routine.routine.routine_name}}</td>
-                                            <td>{{routine.user.fullname}}</td>
-                                            <td>{{routine.video_title}}</td>
-                                            <td>{{routine.video_duration}}</td>
-                                            <td class="description">{{routine.video_description}}</td>
-                                            <td><img src="{{routine.video_thumb}}" width="100px" height="50px"></td>
-                                            <td>
-                                                <button id="slice_{{routine.id}}" *ngIf="routine.slice_added == 'no'" class="btn btn-primary" 
-                                                    (click)="createVideoSliceRecordong(routine.id , routine.routine.routineFolder.folder_info.id)">Add Slice<span id="loader_{{routine.id}}" style="display: none;"> <i
-                                                        class="fas fa-sync fa-spin"></i></span></button>
-                                                <button id="slice_dis_{{routine.id}}" [disabled]="true"  *ngIf="routine.slice_added == 'yes'" class="btn btn-primary">
-                                                                    Added<span
-                                                    class="badge bg-warning"></span></button>
-                                            </td>
-                                            <td>
-                                                <form #notation="ngForm" (ngSubmit)="addNotation(notation)">
-                                                    <div class="input-group date">
-                                                        <input id="notation_file" type="file" class="form-control"
-                                                            (change)="onFileChange($event,routine.id)" />
-                                                    </div>
-                                                    <div class="alert-danger" *ngIf="notation.submitted && !notationFile">
-                                                        <div>Notation File is required.</div>
-                                                    </div>
-                                                    <button id="notation_{{routine.id}}" *ngIf="routine.notation_file_added == 'no'" class="btn btn-primary" [class.disabled]="!notation.valid"
-                                                        (click)="addSliceNotation()">Add Notation<span id="loader_notation_{{routine.id}}" style="display: none;"> <i
-                                                            class="fas fa-sync fa-spin"></i></span><span
-                                                            class="badge bg-warning"></span>
-                                                    </button>
-                                                <button id="notation_dis_{{routine.id}}" [disabled]="true"  *ngIf="routine.notation_file_added == 'yes'" class="btn btn-primary">
-                                                                Added</button>
-                                                </form>
-                                            </td>
-                                            <td>
-                                                <a class="btn btn-sm btn-outline-primary" [routerLink]="['/admin/routine-video/view',routine.id]"><i class="fas fa-eye"></i></a>
-                                                <a class="btn btn-sm btn-outline-danger" (click)="deleteRoutineVideo(routine.id)"><i class="fas fa-trash"></i></a>
-                                                <a class="btn btn-sm btn-outline-info" [routerLink]="['/admin/routine-video/edit',routine.id,routine.user_id]"><i class="fas fa-pencil-alt"></i></a>
-=======
                                     <tr id="row_{{routine.id}}" *ngFor="let routine of List; let i = index">
                                         <td>{{(i+1)+(10*(currentPage-1))}}</td>
                                         <td>{{routine.routine.routine_name}}</td>
@@ -150,7 +110,6 @@
                                                     style="font-size: 20px;"></i></a>
                                             <a [routerLink]="['/admin/routine-video/edit',routine.id,routine.user_id]"><i
                                                     class="fas fa-pencil-alt" style="font-size: 20px;"></i></a>
->>>>>>> eee45617dadc0885988e14a08fbc87ff50d96aec
 
                                             </td>
 
