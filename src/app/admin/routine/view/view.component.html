@@ -24,11 +24,25 @@
                                     <h3 class="card-title">Detail</h3>
                                 </div>
                                 <div class="card-body">
-                                    <p><strong>Routine Name:</strong>{{routineDetail.routine_name}}</p>
-                                    <p><strong>Routine Description:</strong>{{routineDetail.routine_description}}</p>
-                                    <p><strong>Routine Level:</strong>{{routineDetail.routine_level}}</p>
-                                    <p><strong>Artist:</strong>{{routineDetail.user.fullname}}</p>
-                                    <p><strong>Image:</strong><img [src]="routineDetail.image"  style="height: 100px; width:100px"></p>
+                                    <div>
+                                        <strong>Routine Name:</strong> <p>{{routineDetail.routine_name}}</p>
+                                    </div>
+                                     <hr />
+                                    <div>
+                                        <strong>Routine Description:</strong> <p>{{routineDetail.routine_description}}</p>
+                                    </div>
+                                     <hr />
+                                    <div>
+                                        <strong>Routine Level:</strong> <p>{{routineDetail.routine_level}}</p>
+                                    </div>
+                                     <hr />
+                                    <div>
+                                        <strong>Artist:</strong> <p>{{routineDetail.user.fullname}}</p>
+                                    </div>
+                                     <hr />
+                                    <div>
+                                        <strong>Image:</strong> <p><img [src]="routineDetail.image"  style="height: 100px; width:100px"></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>

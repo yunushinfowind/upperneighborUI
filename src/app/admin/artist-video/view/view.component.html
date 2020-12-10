@@ -24,19 +24,34 @@
                             <h3 class="card-title">Detail</h3>
                         </div>
                         <div class="card-body">
-                            <strong>Title:    </strong><p>{{(routineVideoDetail.video_title)?routineVideoDetail.video_title:''}}</p>
-                            <strong>Description:   </strong><p>{{routineVideoDetail.video_description}}</p>
-                            <strong>Duration:  </strong><p>{{routineVideoDetail.duration}}</p>
-                            <strong>Artist:   </strong><p>{{routineVideoDetail.user.fullname}}</p>
-                            <strong class="thumb_strong">Thumb Image:  </strong><p class="thumb_image"><img [src]="model.video_thumb"  style="height: 100px; width:100px">
-                            </p>
-                            <strong>Video: </strong>
-                            <strong>Video: </strong>
-                              <div class="video">
-                                <video muted  *ngIf="model.video_url" id="video1"  width="300px" height="195px" class="img" controls
-                                >
-                                <source src="{{model.video_url}}" type='video/mp4' />
-                                </video>
+                            <div>
+                                <strong>Title:    </strong><p>{{(routineVideoDetail.video_title)?routineVideoDetail.video_title:''}}</p>
+                            </div>
+                            <hr />
+                            <div>
+                                <strong>Description:   </strong><p>{{routineVideoDetail.video_description}}</p>
+                            </div>
+                            <hr />
+                            <div>
+                                <strong>Duration:  </strong><p>{{routineVideoDetail.duration}}</p>
+                            </div>
+                            <hr />
+                            <div>
+                                <strong>Artist:   </strong><p>{{routineVideoDetail.user.fullname}}</p>
+                            </div>
+                            <hr />
+                            <div>
+                                <strong class="thumb_strong">Thumb Image:  </strong><p class="thumb_image"><img [src]="model.video_thumb"  style="height: 100px; width:100px"></p>
+                            </div>
+                            <hr />
+                            <div>
+                                <strong>Video: </strong>
+                                <div class="video">
+                                    <video muted  *ngIf="model.video_url" id="video1"  width="300px" height="195px" class="img" controls
+                                    >
+                                    <source src="{{model.video_url}}" type='video/mp4' />
+                                    </video>
+                                </div>
                             </div>
                         </div>
                     </div>

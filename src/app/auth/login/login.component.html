@@ -44,17 +44,13 @@
                             </div>
                         </div> -->
                         <!-- /.col -->
-                        <div class="col-5">
-                            <button type="submit" [class.disabled]="!loginForm.valid"
-                                class="btn btn-primary btn-block">Sign In
-                                <span *ngIf="showLoader"> <i class="fas fa-sync fa-spin"></i></span>
-                            </button>
+                        <div class="col-12">
+                            <button type="submit" [class.disabled]="!loginForm.valid" class="btn btn-primary btn-block"> Sign In <span *ngIf="showLoader"> <i class="fas fa-sync fa-spin"></i></span></button>
                         </div>
                     </div>
                 </form>
-                <p class="mb-1">
+                <p class="mt-2 mb-0 text-center">
                     <a routerLink="/forgot-password">I forgot my password</a>
-
                 </p>
             </div>
         </div>
