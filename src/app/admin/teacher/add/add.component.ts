@@ -25,11 +25,13 @@ export class AddComponent implements OnInit {
     career_highlight: '',
     key_point: '',
     performance: '',
-    address: ''
+    address: '',
+    emojis:[]
   }
   imageSrc: any;
   showLoader: boolean = false;
   addscript: boolean = false;
+  emojiList:any;
 
   public Editor = ClassicEditor;
   constructor(private emojiScript: EmojiScriptServiceService, private toastr: ToastrService, private teacherService: TeacherService, private router: Router) { }
@@ -42,22 +44,44 @@ export class AddComponent implements OnInit {
 
   ngOnInit(): void {
     this.addScript();
-    (function ($) {
-      $(document).ready(function () {
-        $('.emojis-plain').emojiarea({ wysiwyg: false });
-        var $wysiwyg = $('.emojis-wysiwyg').emojiarea({ wysiwyg: true });
-        var $wysiwyg_value = $('#emojis-wysiwyg-value');
+    // (function ($) {
+    //   $(document).ready(function () {
+    //     $('.emojis-plain').emojiarea({ wysiwyg: false });
+    //     var $wysiwyg = $('.emojis-wysiwyg').emojiarea({ wysiwyg: true });
+    //     var $wysiwyg_value = $('#emojis-wysiwyg-value');
 
-        $wysiwyg.on('change', function () {
-          $wysiwyg_value.text($(this).val());
-        });
-        console.log("Hello from jQuery!");
-      });
-    });
+    //     $wysiwyg.on('change', function () {
+    //       $wysiwyg_value.text($(this).val());
+    //     });
+    //     console.log("Hello from jQuery!");
+    //   });
+    // });
+    this.getEmojiList();
   }
 
   openEmoji() {
-
+    console.log('inn')
+    if( $('.select_group').css('display') == 'block' ) {
+      $('.select_group').css({'display':'none'})
+   } else {
+    $('.select_group').css({'display':'block'})
+   }
+   
+  }
+  getEmojiUrl(id:any){
+    $('#emoji_'+id).attr('href');
+    console.log($('#emoji_'+id + '> img').attr('src'));
+    var emoji = $('#emoji_'+id + '> img').attr('src');
+    console.log("src:"+emoji)
+    this.model.emojis.push(emoji);
+    // emoji = "<img width='25px' _ alt=':bowtie:' src='"+emoji+"'><span _ class='label'>:bowtie:</span></a>";
+    var textarea = $('.emoji-area');
+    var image = new Image();
+    image.width = 25;
+    image.src = emoji,
+    
+    document.getElementById('emoji-area').appendChild(image);
+    
   }
   
   loadScripts() {
@@ -83,8 +107,26 @@ export class AddComponent implements OnInit {
     })
   }
 
+  getEmojiList(){
+    this.teacherService.getEmojiList(1).subscribe(result => {
+      if (result.success) {
+        this.emojiList = result.data;
+        console.log(result.data)
+        
+      } else {
+        this.toastr.error(result.message)
+      }
+    },
+      error => {
+
+      }
+    )
+  }
+
   teacherSubmit(f: NgForm) {
 
+   
+    console.log(this.model.emojis);
     if (f.valid && this.model.profile) {
       this.showLoader = true;
       const formData = new FormData();
@@ -97,19 +139,19 @@ export class AddComponent implements OnInit {
       formData.append('performance', this.model.performance);
       formData.append('address', this.model.address);
 
-      this.teacherService.addTeacher(formData).subscribe(result => {
-        if (result.success) {
-          this.showLoader = false;
-          this.toastr.success(result.message);
-          this.router.navigateByUrl('/admin/artist/list')
-        } else {
-          this.toastr.error(result.message)
-        }
-      },
-        error => {
+      // this.teacherService.addTeacher(formData).subscribe(result => {
+      //   if (result.success) {
+      //     this.showLoader = false;
+      //     this.toastr.success(result.message);
+      //     // this.router.navigateByUrl('/admin/artist/list')
+      //   } else {
+      //     this.toastr.error(result.message)
+      //   }
+      // },
+      //   error => {
 
-        }
-      )
+      //   }
+      // )
     }
 
   }

@@ -58,7 +58,14 @@ export class TeacherService {
       return response;
     }));
   }
-  
+  getEmojiList(group:any){
+    const result = this.httpclient.get(this.baseUrl + '/admin/get-emojis' + '?group=' + group
+    );
+    return result.pipe(map((response: any) => {
+      return response;
+    }));
+  }
+
   deleteTeacher(id: any) {
     const result = this.httpclient.delete(this.baseUrl + '/admin/delete-teacher/' + id);
     return result.pipe(map((response: any) => {
