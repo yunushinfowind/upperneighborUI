@@ -7,10 +7,11 @@ import { AddComponent } from './add/add.component';
 import { ViewComponent } from './view/view.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditComponent } from './edit/edit.component';
+import { SafePipe } from '../../pipesafe/pipesafe.component';
 
 
 @NgModule({
-  declarations: [ListComponent, AddComponent, ViewComponent, EditComponent],
+  declarations: [ListComponent, AddComponent, ViewComponent, EditComponent , SafePipe],
   imports: [
     CommonModule,
     RoutineVideoRoutingModule , FormsModule , ReactiveFormsModule

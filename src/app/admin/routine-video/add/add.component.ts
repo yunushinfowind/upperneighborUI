@@ -32,7 +32,7 @@ export class AddComponent implements OnInit {
   productForm: FormGroup;
   submitted = false;
   videos: any = [];
-
+  sizeSum : any = 0;
   constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, private toastr: ToastrService, private routineService: RoutineVideoService, private router: Router, private routineSer: RoutineService) {
     this.productForm = this.fb.group({
       name: '',
@@ -100,11 +100,18 @@ export class AddComponent implements OnInit {
     const reader = new FileReader();
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
+      var size = event.target.files[0].size/1000/1000;
+      size = Math.round(size * 10) / 10
+      this.sizeSum = this.sizeSum + size;
+      console.log('size:'+this.sizeSum)
       let data = {
         index: i,
         file: file
       }
       this.videos[i] = file;
+      if(this.sizeSum > 200){
+      this.toastr.error('Sorry , size of video has been exceeded from 200 MB.')
+      }
     }
   }
 
@@ -135,7 +142,7 @@ export class AddComponent implements OnInit {
         formData.append('videos[]', this.videos[i]);
       }
 
-      if (!this.productForm.invalid) {
+      if (!this.productForm.invalid && (this.sizeSum < 200)) {
         $('#loader_submit').show();
         $('#submit_button').attr('disabled', 'true');
         this.routineService.addRoutineVideo(formData).subscribe(result => {
@@ -144,7 +151,10 @@ export class AddComponent implements OnInit {
             this.toastr.success(result.message);
             $('#loader_submit').hide();
             $('#submit_button').attr('disabled', 'false');
-            this.router.navigate(['/admin/routine-video/list', this.routine_id, this.user_id]);
+            setTimeout(function(){
+              this.router.navigate(['/admin/routine-video/list', this.routine_id, this.user_id]);
+            },1000)
+          
           } else {
             this.toastr.error(result.message)
           }

@@ -37,39 +37,45 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <div class="table-responsive">
-                                <table datatable class="table table-bordered table-hover table table-striped table-bordered table-sm row-border hover">
-                                    <thead>
-                                        <tr>
-                                            <th>S.N.</th>
-                                            <th>Full Name</th>
-                                            <th>Profile</th>
-                                            <th>Profession</th>
-                                            <th>Address</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        
-                                        <tr *ngIf="showLoader">
-                                            <td colspan="4">
-                                                <i class="fas 3x fa-spinner fa-spin"></i>
-                                            </td>
-                                        </tr>
-                                        
-                                        <tr id="row_{{teacher.id}}" *ngFor="let teacher of List ; let i = index">
-                                            <td>{{(i+1)+(10*(currentPage-1))}}</td>
-                                            <td>{{teacher.fullname}}</td>
-                                            <td><img src="{{teacher.profile}}" width="100px" height="50px"></td>
-                                            <td>{{teacher.teacherProfile.profession}}</td>
-                                            <td>{{teacher.teacherProfile.address}}</td>
-                                            <td>
-                                                <a class="btn btn-sm btn-primary" [routerLink]="['/admin/routine/list/',teacher.id]">Routine<span class="badge bg-warning">{{teacher.routine_count}}</span></a>
-                                                <a class="btn btn-sm btn-primary" [routerLink]="['/admin/artist-video/list/',teacher.id]">Artist Video<span class="badge bg-warning">{{teacher.normal_video_count}}</span></a>
-                                                <a class="btn btn-sm btn-outline-primary" [routerLink]="['/admin/artist/view',teacher.id]"><i class="fas fa-eye"></i></a>
-                                                <a class="btn btn-sm btn-outline-danger" (click)="deleteTeacher(teacher.id)"><i class="fas fa-trash"></i></a>
-                                                <a class="btn btn-sm btn-outline-info" [routerLink]="['/admin/artist/edit',teacher.id]"><i class="fas fa-pencil-alt"></i></a>
-                                            </td>
+                            <table datatable class="table table-bordered table-hover table table-striped table-bordered table-sm row-border hover">
+                                <thead>
+                                    <tr>
+                                        <th>S.N.</th>
+                                        <th>Full Name</th>
+                                        <th>Profile</th>
+                                        <th>Profession</th>
+                                        <th>Address</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                    <tr *ngIf="showLoader">
+                                        <td colspan="4">
+                                            <i class="fas 3x fa-spinner fa-spin"></i>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr id="row_{{teacher.id}}" *ngFor="let teacher of List ; let i = index">
+                                        <td>{{(i+1)+(10*(currentPage-1))}}</td>
+                                        <td>{{teacher.fullname}}</td>
+                                        <td><img src="{{teacher.profile}}" width="100px" height="50px"></td>
+                                        <td>{{teacher.teacherProfile.profession}}</td>
+                                        <td>{{teacher.teacherProfile.address}}</td>
+                                        <td>
+                                            <label  class="switch">
+                                            <input (click)="changeStatus(teacher.id,teacher.active_status)" [checked]="teacher.active_status" class="status_{{teacher.id}}" type="checkbox">
+                                            <span class="slider round"></span>
+                                          </label>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-primary" [routerLink]="['/admin/routine/list/',teacher.id]">Routine<span class="badge bg-warning">{{teacher.routine_count}}</span></a>
+                                            <a class="btn btn-primary" [routerLink]="['/admin/artist-video/list/',teacher.id]">Artist Video<span class="badge bg-warning">{{teacher.normal_video_count}}</span></a>
+                                            <a class="btn btn-sm btn-outline-primary" [routerLink]="['/admin/artist/view',teacher.id]"><i class="fas fa-eye" style="font-size: 20px;"></i></a>
+                                            <!-- <a (click)="deleteTeacher(teacher.id)"><i class="fas fa-trash" style="font-size: 20px;"></i></a> -->
+                                            <a class="btn btn-sm btn-outline-info" [routerLink]="['/admin/artist/edit',teacher.id]"><i class="fas fa-pencil-alt" style="font-size: 20px;"></i></a>
+                                        </td>
 
                                         </tr>
                                         <tr *ngIf="List?.length == 0" class="alert-danger">
@@ -89,6 +95,6 @@
                     </div>
                 </div>
             </div>
-        </div>
+        <!-- </div> -->
     </section>
 </div>

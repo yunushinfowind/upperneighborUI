@@ -54,7 +54,7 @@
                                             </td>
                                             <td>
                                                 Video:
-                                                <input type="file" accept="video/*" formControlName="video" (change)="onFileChange($event,i)"  class="form-control">
+                                                <input type="file" accept="video/*" formControlName="video" (change)="onFileChange($event,i)"  class="form-control add-video">
                                                 <div *ngIf="submitted && quantity.controls.video.errors">
                                                     <div class="alert-danger" *ngIf="quantity.controls.video.errors.required">Video is required</div>
                                                 </div>
