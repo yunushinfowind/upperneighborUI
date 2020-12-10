@@ -58,7 +58,11 @@ div.card {
 .add-video{
     overflow: hidden;
 }
-
+.table-responsive .table tbody td img {
+    max-width: 50px;
+    height: auto;
+    object-fit: cover;
+}
 
 
 
