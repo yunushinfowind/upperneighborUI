@@ -19,13 +19,13 @@ export class ListComponent implements OnInit {
   currentPage: any;
   dtOptions: DataTables.Settings = {};
   showLoader: boolean = true;
-  showButtonLoader : boolean=false;
-  sliceButtonDisable : boolean = true
+  showButtonLoader: boolean = false;
+  sliceButtonDisable: boolean = true
   user_id: any;
   routine_id: any;
   modelShow: boolean = false;
-  notationFile:any;
-  video_id:any;
+  notationFile: any;
+  video_id: any;
   constructor(private activatedRoute: ActivatedRoute, private routineService: RoutineVideoService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
@@ -78,11 +78,11 @@ export class ListComponent implements OnInit {
     }
     // this.showButtonLoader = true;
     this.sliceButtonDisable = false;
-    $('#loader_'+videoId).show();
+    $('#loader_' + videoId).show();
     this.routineService.createVideoSliceRecordong(postData).subscribe(result => {
       if (result.success) {
-        $('#loader_'+videoId).hide();
-        $('#slice_'+videoId).attr('disabled', 'true');
+        $('#loader_' + videoId).hide();
+        $('#slice_' + videoId).attr('disabled', 'true');
         // this.showButtonLoader = false;
         this.sliceButtonDisable = true;
         this.toastr.success(result.message);
@@ -98,21 +98,21 @@ export class ListComponent implements OnInit {
     console.log(this.modelShow)
   }
 
-  addNotation(f: NgForm){
+  addNotation(f: NgForm) {
     if (f.valid && this.notationFile) {
       const formData = new FormData();
-      $('#loader_notation_'+this.video_id).show();
+      $('#loader_notation_' + this.video_id).show();
       formData.append('video_id', this.video_id);
       formData.append('notation_file', this.notationFile);
       this.routineService.addNotation(formData).subscribe(result => {
         if (result.success) {
-          $('#loader_notation_'+this.video_id).hide();
+          $('#loader_notation_' + this.video_id).hide();
           this.toastr.success(result.message);
-          $('#notation_dis_'+this.video_id).show();
-          $('#notation_'+this.video_id).attr('disabled', 'true');
-          $('#notation_'+this.video_id).prop('value', 'Added');
+          $('#notation_dis_' + this.video_id).show();
+          $('#notation_' + this.video_id).attr('disabled', 'true');
+          $('#notation_' + this.video_id).prop('value', 'Added');
         } else {
-          $('#loader_notation_'+this.video_id).hide();
+          $('#loader_notation_' + this.video_id).hide();
           this.toastr.error(result.message)
         }
       }
@@ -120,30 +120,32 @@ export class ListComponent implements OnInit {
     }
   }
 
-  onFileChange(event,videoId) {
-    console.log($("#slice_"+videoId).is(":disabled"));
-    console.log($("#slice_dis_"+videoId).is(":disabled"));
-    
-    // if(!$("#slice_"+videoId).is(":disabled")){
-    //   this.toastr.error('Please add slice first');
-    //   return 
-    // }
-    this.video_id = videoId;
-    console.log(this.video_id)
-    const reader = new FileReader();
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      var type = file.name.split('?')[0].split('.').pop();
-      var re = /(\.musicxml|\.xml|\.xml|\.gp3|\.gp4|\.gp4|\.gp5|\.gpx|\.gp|\.ptb|\.tg)$/i;
-      if (!re.exec(file.name)) {
-        this.toastr.error('Sorry this type of not supported, Please upload notation file type')
-        $('#notation_file').val('');
-        }else{
-        this.notationFile = file;
+  onFileChange(event, videoId) {
+    console.log($("#slice_" + videoId).is(":disabled"));
+    console.log($("#slice_dis_" + videoId).is(":disabled"));
+
+    if ($("#slice_" + videoId).is(":disabled") || $("#slice_dis_" + videoId).is(":disabled")) {
+      this.video_id = videoId;
+      console.log(this.video_id)
+      const reader = new FileReader();
+      if (event.target.files.length > 0) {
+        const file = event.target.files[0];
+        var type = file.name.split('?')[0].split('.').pop();
+        var re = /(\.musicxml|\.xml|\.xml|\.gp3|\.gp4|\.gp4|\.gp5|\.gpx|\.gp|\.ptb|\.tg)$/i;
+        if (!re.exec(file.name)) {
+          this.toastr.error('Sorry this type of not supported, Please upload notation file type')
+          $('#notation_file').val('');
+        } else {
+          this.notationFile = file;
+        }
       }
+    } else {
+      this.toastr.error('Please add slice first');
+      $('#notation_file').val('');
+      return
     }
   }
-  resetSearch(){
+  resetSearch() {
     $('.table_search').val('');
     this.routneVideoList(1);
   }

@@ -24,9 +24,15 @@ export class SidebarComponent implements OnInit {
         console.log( this.router.url); // array of states
         // console.log(this.activatedRoute.snapshot.url[0].path);
     })
+
+    $('.nav-item').on('click',function(){
+      if($("body").hasClass("sidebar-open")){
+        $("body").removeClass("sidebar-open")
+        $("body").addClass("sidebar-closed sidebar-collapse")
+      }
+    });
   }
 
-  
   clickEvent(){
       this.status = !this.status;  
    }

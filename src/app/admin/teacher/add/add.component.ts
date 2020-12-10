@@ -9,6 +9,7 @@ import { EmojiScriptServiceService } from '../emoji-script-service.service';
 import { emojiarea } from "../../../../assets/packs/jquery.emojiarea.js";
 
 
+
 @Component({
   selector: 'app-add',
   templateUrl: './add.component.html',
@@ -27,59 +28,58 @@ export class AddComponent implements OnInit {
     address: ''
   }
   imageSrc: any;
-  showLoader:boolean=false;
-  addscript : boolean = false;
+  showLoader: boolean = false;
+  addscript: boolean = false;
 
   public Editor = ClassicEditor;
-  constructor(private emojiScript: EmojiScriptServiceService , private toastr: ToastrService, private teacherService: TeacherService, private router: Router) { }
+  constructor(private emojiScript: EmojiScriptServiceService, private toastr: ToastrService, private teacherService: TeacherService, private router: Router) { }
 
-  
+
   ngAfterViewInit(): void {
 
 
-}
+  }
 
   ngOnInit(): void {
-    
+    this.addScript();
     (function ($) {
-      $(document).ready(function(){
-         $('.emojis-plain').emojiarea({wysiwyg: false});
-  
-      var $wysiwyg = $('.emojis-wysiwyg').emojiarea({wysiwyg: true});
-      var $wysiwyg_value = $('#emojis-wysiwyg-value');
-      
-      $wysiwyg.on('change', function() {
-        $wysiwyg_value.text($(this).val());
-      });
+      $(document).ready(function () {
+        $('.emojis-plain').emojiarea({ wysiwyg: false });
+        var $wysiwyg = $('.emojis-wysiwyg').emojiarea({ wysiwyg: true });
+        var $wysiwyg_value = $('#emojis-wysiwyg-value');
+
+        $wysiwyg.on('change', function () {
+          $wysiwyg_value.text($(this).val());
+        });
         console.log("Hello from jQuery!");
       });
     });
-     
-      
   }
 
-  openEmoji(){
+  openEmoji() {
 
   }
-   loadScripts() {
-     
+  
+  loadScripts() {
+
     // You can load multiple scripts by just providing the key as argument into load method of the service
-    this.emojiScript.load('emojiarea','emojis').then(data => {
+    this.emojiScript.load('emojiarea', 'emojis').then(data => {
       console.log(data)
       console.log('Script Loaded Successfully')
       // var $wysiwyg = $('.emojis-wysiwyg').emojiarea({wysiwyg: true});
-        var $wysiwyg_value = $('#emojis-wysiwyg-value');
+      var $wysiwyg_value = $('#emojis-wysiwyg-value');
     }).catch(error => console.log(error));
   }
 
   addScript() {
     this.addscript = true;
     return new Promise((resolve, reject) => {
-      let scripttagElement = document.createElement('script');    
+      let scripttagElement = document.createElement('script');
       scripttagElement.src = '../../../../assets/packs/jquery.emojiarea.js';
-      // scripttagElement.src = '../../../../assets/packs/basic/emojis.js';
+      scripttagElement.src = 'https://twemoji.maxcdn.com/2/twemoji.min.js?11.0';
       scripttagElement.onload = resolve;
       document.body.appendChild(scripttagElement);
+      // twemoji.parse(document.body);
     })
   }
 
@@ -114,7 +114,7 @@ export class AddComponent implements OnInit {
 
   }
 
-  handleClick(e){
+  handleClick(e) {
     console.log(e)
   }
   onFileChange(event) {

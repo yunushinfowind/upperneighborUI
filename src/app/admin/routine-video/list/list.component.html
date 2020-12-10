@@ -85,7 +85,7 @@
                                                 class="badge bg-warning"></span></button>
                                         </td>
                                         <td>
-                                            <form #notation ="ngForm">
+                                            <form #notation ="ngForm" id="form_{{routine.id}}">
                                                 <div class="input-group date">
                                                     <input id="notation_file" type="file" class="form-control"
                                                         (change)="onFileChange($event,routine.id)" />
