@@ -32,10 +32,12 @@
                             <strong class="thumb_strong">Thumb Image:  </strong><p class="thumb_image"><img [src]="model.video_thumb"  style="height: 100px; width:100px">
                             </p>
                             <strong>Video: </strong>
-                            <iframe [src]="video_link_url" width="200" height="150" frameBorder="0" allowfullscreen></iframe>
-                            <!-- <video width="200" height="150" controls>
-                                <source [src]="video_link" type="video/mp4">
-                              </video> -->
+                              <div class="video">
+                                <video muted  *ngIf="model.video_url" id="video1"  width="300px" height="195px" class="img" controls
+                                >
+                                <source src="{{model.video_url}}" type='video/mp4' />
+                                </video>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -31,9 +31,13 @@
                             <strong class="thumb_strong">Thumb Image:  </strong><p class="thumb_image"><img [src]="model.video_thumb"  style="height: 100px; width:100px">
                             </p>
                             <strong>Video: </strong>
-                            <video width="200" height="150" controls>
-                                <source [src]="video_link" type="video/mp4">
-                            </video>
+                            <strong>Video: </strong>
+                              <div class="video">
+                                <video muted  *ngIf="model.video_url" id="video1"  width="300px" height="195px" class="img" controls
+                                >
+                                <source src="{{model.video_url}}" type='video/mp4' />
+                                </video>
+                            </div>
                         </div>
                     </div>
                 </div>

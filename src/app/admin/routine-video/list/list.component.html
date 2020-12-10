@@ -85,7 +85,7 @@
                                                 class="badge bg-warning"></span></button>
                                         </td>
                                         <td>
-                                            <form #notation="ngForm" (ngSubmit)="addNotation(notation)">
+                                            <form #notation ="ngForm">
                                                 <div class="input-group date">
                                                     <input id="notation_file" type="file" class="form-control"
                                                         (change)="onFileChange($event,routine.id)" />
@@ -99,16 +99,16 @@
                                                         class="fas fa-sync fa-spin"></i></span><span
                                                         class="badge bg-warning"></span>
                                                 </button>
-                                               <button id="notation_dis_{{routine.id}}" [disabled]="true"  *ngIf="routine.notation_file_added == 'yes'" class="btn btn-primary">
+                                               <button type="button" (click)="addNotation(notation)" id="notation_dis_{{routine.id}}" [disabled]="true"  *ngIf="routine.notation_file_added == 'yes'" class="btn btn-primary">
                                                             Added</button>
                                             </form>
                                         </td>
                                         <td>
-                                            <a [routerLink]="['/admin/routine-video/view',routine.id]"><i
+                                            <a class="btn btn-sm btn-outline-primary" [routerLink]="['/admin/routine-video/view',routine.id]"><i
                                                     class="fas fa-eye" style="font-size: 20px;"></i></a>
-                                            <a (click)="deleteRoutineVideo(routine.id)"><i class="fas fa-trash"
+                                            <a class="btn btn-sm btn-outline-danger" (click)="deleteRoutineVideo(routine.id)"><i class="fas fa-trash"
                                                     style="font-size: 20px;"></i></a>
-                                            <a [routerLink]="['/admin/routine-video/edit',routine.id,routine.user_id]"><i
+                                            <a class="btn btn-sm btn-outline-info" [routerLink]="['/admin/routine-video/edit',routine.id,routine.user_id]"><i
                                                     class="fas fa-pencil-alt" style="font-size: 20px;"></i></a>
 
                                             </td>

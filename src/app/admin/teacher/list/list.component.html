@@ -72,9 +72,9 @@
                                         <td>
                                             <a class="btn btn-primary" [routerLink]="['/admin/routine/list/',teacher.id]">Routine<span class="badge bg-warning">{{teacher.routine_count}}</span></a>
                                             <a class="btn btn-primary" [routerLink]="['/admin/artist-video/list/',teacher.id]">Artist Video<span class="badge bg-warning">{{teacher.normal_video_count}}</span></a>
-                                            <a [routerLink]="['/admin/artist/view',teacher.id]"><i class="fas fa-eye" style="font-size: 20px;"></i></a>
+                                            <a class="btn btn-sm btn-outline-primary" [routerLink]="['/admin/artist/view',teacher.id]"><i class="fas fa-eye" style="font-size: 20px;"></i></a>
                                             <!-- <a (click)="deleteTeacher(teacher.id)"><i class="fas fa-trash" style="font-size: 20px;"></i></a> -->
-                                            <a [routerLink]="['/admin/artist/edit',teacher.id]"><i class="fas fa-pencil-alt" style="font-size: 20px;"></i></a>
+                                            <a class="btn btn-sm btn-outline-info" [routerLink]="['/admin/artist/edit',teacher.id]"><i class="fas fa-pencil-alt" style="font-size: 20px;"></i></a>
                                         </td>
 
                                         </tr>
@@ -95,6 +95,6 @@
                     </div>
                 </div>
             </div>
-     
+        <!-- </div> -->
     </section>
 </div>

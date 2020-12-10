@@ -121,6 +121,13 @@ export class ListComponent implements OnInit {
   }
 
   onFileChange(event,videoId) {
+    console.log($("#slice_"+videoId).is(":disabled"));
+    console.log($("#slice_dis_"+videoId).is(":disabled"));
+    
+    // if(!$("#slice_"+videoId).is(":disabled")){
+    //   this.toastr.error('Please add slice first');
+    //   return 
+    // }
     this.video_id = videoId;
     console.log(this.video_id)
     const reader = new FileReader();

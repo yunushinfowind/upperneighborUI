@@ -23,10 +23,11 @@ import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 import { SafePipe } from './pipesafe/pipesafe.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { JwPaginationModule } from 'jw-angular-pagination';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
-    AppComponent , LoginComponent, HeaderComponent, FooterComponent, SidebarComponent , ForgotPasswordComponent, SafePipe, PrivacyPolicyComponent
+    AppComponent , LoginComponent, HeaderComponent, FooterComponent, SidebarComponent , ForgotPasswordComponent, PrivacyPolicyComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +46,8 @@ import { JwPaginationModule } from 'jw-angular-pagination';
     DataTablesModule,
     PickerModule,
     EmojiModule,
-    JwPaginationModule
+    JwPaginationModule,
+    RouterModule
    
   ],
   providers: [GuestService,LoginGuardService,

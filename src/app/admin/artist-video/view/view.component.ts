@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { ArtistVideoService } from '../artist-video.service';
@@ -10,11 +10,13 @@ import { ArtistVideoService } from '../artist-video.service';
 })
 export class ViewComponent implements OnInit {
 
+  @ViewChild("videoPlayer", { static: false }) videoplayer: ElementRef;
   Id: any;
   routineVideoDetail: any;
   model = {
     video_thumb:'',
-    routine_name : ''
+    routine_name : '',
+    video_url : ''
   }
   video_link : any
 
@@ -36,11 +38,7 @@ export class ViewComponent implements OnInit {
         this.routineVideoDetail = result.data;
         this.model.video_thumb = result.data.video_thumb;
         this.video_link = result.data.video_link;
-        this.video_link = this.dom.bypassSecurityTrustResourceUrl(this.video_link);
-        
-        console.log(this.video_link)
-        console.log(this.routineVideoDetail.user)
-        // console.log(this.routineVideoDetail.routine)
+        this.model.video_url = result.data.video_link;
       }
     })
   }

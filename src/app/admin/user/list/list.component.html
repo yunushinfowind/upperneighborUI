@@ -53,8 +53,8 @@
                                                 <i class="fas 3x fa-spinner fa-spin"></i>
                                             </td>
                                         </tr>
-                                        
-                                        <tr id="row_{{teacher.id}}" *ngFor="let teacher of pageOfItems ; let i = index">
+                                  
+                                        <tr id="row_{{teacher.id}}" *ngFor="let teacher of items ; let i = index">
                                             <td>{{(i+1)+(10*(currentPage-1))}}</td>
                                             <td>{{teacher.fullname}}</td>
                                             <td><img src="{{teacher.profile}}" width="100px" height="50px"></td>
@@ -82,6 +82,7 @@
                                 </table>
                             </div>
                         </div>
+                        
                         <div  class="card-footer pb-0 pt-3">
                             <jw-pagination *ngIf="pageOfItems?.length >= 10" [items]="items" (changePage)="onChangePage($event)"></jw-pagination>
                         </div>

@@ -55,6 +55,9 @@ div.card {
 .input-group>.form-control[type="file"] {
     overflow: hidden;
 }
+.add-video{
+    overflow: hidden;
+}
 
 
 

@@ -151,7 +151,10 @@ export class AddComponent implements OnInit {
             this.toastr.success(result.message);
             $('#loader_submit').hide();
             $('#submit_button').attr('disabled', 'false');
-            this.router.navigate(['/admin/routine-video/list', this.routine_id, this.user_id]);
+            setTimeout(function(){
+              this.router.navigate(['/admin/routine-video/list', this.routine_id, this.user_id]);
+            },1000)
+          
           } else {
             this.toastr.error(result.message)
           }
